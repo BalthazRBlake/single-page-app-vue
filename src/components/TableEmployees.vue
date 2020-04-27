@@ -3,10 +3,15 @@
     <b-table
       hover
       responsive
+      sort-icon-left
+      sticky-header="500px"
       :items="employees"
       :fields="fields"
       :small="small"
       :head-variant="headVariant"
+      :sort-by.sync="sortBy"
+      :sort-desc.sync="sortDesc"
+      no-sort-reset
       :busy="isBusy"
     >
       <template v-slot:table-busy>
@@ -22,8 +27,12 @@
         <b-td v-if="data.value" variant="info">YES</b-td>
         <b-td v-else variant="danger">NO</b-td>
       </template>
-      <template v-slot:table-caption>List of employees.</template>
     </b-table>
+    <div>
+      Sorting By: <b>{{ sortBy }}</b>
+      , Sort Direction:
+      <b>{{ sortDesc ? "Descending" : "Ascending" }}</b>
+    </div>
   </div>
 </template>
 
@@ -36,6 +45,8 @@ export default {
       page: 1,
       size: 10,
       isBusy: false,
+      sortBy: "empId",
+      sortDesc: false,
       fields: [
         {
           key: "details",
