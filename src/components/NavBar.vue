@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="dark">
+    <b-navbar toggleable="lg" type="dark" variant="dark" fixed="top">
       <b-navbar-brand :to="{ name: 'Home' }">
         <b-icon-code-slash class="d-inline-block align-top" font-scale="1.5">
         </b-icon-code-slash>

@@ -33,6 +33,8 @@ import EmployeeService from "@/service/EmployeeService.js";
 export default {
   data() {
     return {
+      page: 1,
+      size: 10,
       isBusy: false,
       fields: [
         {
@@ -41,7 +43,8 @@ export default {
         },
         {
           key: "empId",
-          label: "Id"
+          label: "Id",
+          sortable: true
         },
         {
           key: "empName",
@@ -64,7 +67,7 @@ export default {
   },
   created() {
     this.isBusy = !this.isBusy;
-    EmployeeService.getPaginatedEmployees(1, 10)
+    EmployeeService.getPaginatedEmployees(this.page, this.size)
       .then(response => {
         this.employees = response.data;
         this.isBusy = !this.isBusy;
