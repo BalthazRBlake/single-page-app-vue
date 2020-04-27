@@ -56,10 +56,10 @@ export default {
   },
   created() {
     EmployeeService.getPaginatedEmployees(1, 10)
-      .then((response) => {
+      .then(response => {
         this.employees = response.data;
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error.response);
       });
   }
