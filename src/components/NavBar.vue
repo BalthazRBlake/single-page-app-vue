@@ -15,7 +15,14 @@
             About
           </b-nav-item>
 
-          <b-nav-item href="#" disabled>Disabled</b-nav-item>
+          <b-nav-item
+            href="https://github.com/BalthazRBlake/SinglePageAppFrontEnd"
+          >
+            GitHub Repo
+          </b-nav-item>
+          <b-nav-item href="https://spa-java-api.herokuapp.com">
+            API Documentation
+          </b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -26,9 +33,14 @@
               class="mr-sm-2"
               placeholder="Search"
             ></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit"
-              >Search</b-button
+            <b-button
+              size="sm"
+              class="my-2 my-sm-0"
+              type="submit"
+              variant="outline-info"
             >
+              Search
+            </b-button>
           </b-nav-form>
 
           <b-nav-item-dropdown text="Lang" right>
