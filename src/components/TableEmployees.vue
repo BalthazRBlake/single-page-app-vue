@@ -7,7 +7,14 @@
       :fields="fields"
       :small="small"
       :head-variant="headVariant"
+      :busy="isBusy"
     >
+      <template v-slot:table-busy>
+        <div class="text-center text-info my-2">
+          <b-spinner class="align-middle"></b-spinner>
+          <strong>Loading...</strong>
+        </div>
+      </template>
       <template v-slot:cell(details)>
         <b-button size="sm" variant="link">View</b-button>
       </template>
@@ -26,6 +33,7 @@ import EmployeeService from "@/service/EmployeeService.js";
 export default {
   data() {
     return {
+      isBusy: false,
       fields: [
         {
           key: "details",
@@ -55,9 +63,11 @@ export default {
     };
   },
   created() {
+    this.isBusy = !this.isBusy;
     EmployeeService.getPaginatedEmployees(1, 10)
       .then(response => {
         this.employees = response.data;
+        this.isBusy = !this.isBusy;
       })
       .catch(error => {
         console.log(error.response);
