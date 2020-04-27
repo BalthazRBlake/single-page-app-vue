@@ -40,10 +40,18 @@
 import EmployeeService from "@/service/EmployeeService.js";
 
 export default {
+  props: {
+    page: {
+      type: [Number, String],
+      default: 1
+    },
+    size: {
+      type: [Number, String],
+      default: 10
+    }
+  },
   data() {
     return {
-      page: 1,
-      size: 10,
       isBusy: false,
       sortBy: "empId",
       sortDesc: false,

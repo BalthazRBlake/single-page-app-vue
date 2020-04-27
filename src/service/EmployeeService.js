@@ -12,5 +12,8 @@ const apiEmployee = axios.create({
 export default {
   getPaginatedEmployees(page, size) {
     return apiEmployee.get("/paginated/" + page + "/" + size);
+  },
+  getTotalEmployees() {
+    return apiEmployee.get("/pages");
   }
 };

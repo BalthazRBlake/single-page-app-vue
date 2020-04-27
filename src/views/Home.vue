@@ -1,10 +1,12 @@
 <template>
-  <div class="row">
-    <div class="col-md">
-      <TableEmployees />
-    </div>
-    <div class="col-md">
+  <div class="container">
+    <div class="row">
+      <div class="col-md">
+        <TableEmployees page="1" size="10"></TableEmployees>
+      </div>
+      <!--div class="col-md">
       <h1>Home</h1>
+    </div-->
     </div>
   </div>
 </template>
