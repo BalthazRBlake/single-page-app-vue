@@ -6,9 +6,14 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/:currentPage/:perPage",
     name: "Home",
-    component: Home
+    component: Home,
+    props: true
+  },
+  {
+    path: "/",
+    redirect: "/1/10"
   },
   {
     path: "/about",

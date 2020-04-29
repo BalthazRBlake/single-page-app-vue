@@ -29,7 +29,8 @@
       </template>
     </b-table>
     <div>
-      Sorting By: <b>{{ sortBy }}</b>
+      Sorting By:
+      <b>{{ sortBy }}</b>
       , Sort Direction:
       <b>{{ sortDesc ? "Descending" : "Ascending" }}</b>
     </div>
@@ -37,24 +38,17 @@
 </template>
 
 <script>
-import EmployeeService from "@/service/EmployeeService.js";
-
 export default {
   props: {
-    page: {
-      type: [Number, String],
-      default: 1
-    },
-    size: {
-      type: [Number, String],
-      default: 10
-    }
+    employees: Array,
+    isBusy: Boolean
   },
   data() {
     return {
-      isBusy: false,
       sortBy: "empId",
       sortDesc: false,
+      small: true,
+      headVariant: "light",
       fields: [
         {
           key: "details",
@@ -78,22 +72,8 @@ export default {
           key: "empActive",
           label: "isActive"
         }
-      ],
-      employees: [],
-      small: true,
-      headVariant: "light"
+      ]
     };
-  },
-  created() {
-    this.isBusy = !this.isBusy;
-    EmployeeService.getPaginatedEmployees(this.page, this.size)
-      .then(response => {
-        this.employees = response.data;
-        this.isBusy = !this.isBusy;
-      })
-      .catch(error => {
-        console.log(error.response);
-      });
   }
 };
 </script>
