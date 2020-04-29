@@ -5,8 +5,25 @@
       :link-gen="linkGen"
       :number-of-pages="pages"
       use-router
-    ></b-pagination-nav>
-    <TableEmployees :employees="employees" :isBusy="isBusy"></TableEmployees>
+      first-number
+      last-number
+      align="center"
+      pills
+    >
+    </b-pagination-nav>
+
+    <div class="float-right">
+      <span class="badge badge-dark">PerPage: </span>
+      <select v-model.number="perPage">
+        <option>5</option>
+        <option>10</option>
+        <option>25</option>
+        <option>50</option>
+        <option>100</option>
+      </select>
+    </div>
+
+    <TableEmployees :employees="employees" :isBusy="isBusy"> </TableEmployees>
   </div>
 </template>
 
@@ -20,19 +37,20 @@ export default {
   },
   data() {
     return {
-      pages: 5,
       perPage: 10,
-      currentPage: Number,
+      currentPage: 1,
+      pages: 5,
       employees: []
     };
   },
-  created() {
+  beforeUpdate() {
     EmployeeService.getTotalEmployees()
       .then(response => {
         this.pages = Math.ceil(response.data / this.perPage);
       })
       .catch(error => {
         console.log(error.response);
+        this.pages = 1;
       });
   },
   methods: {
@@ -60,7 +78,7 @@ export default {
     }
   },
   computed: {
-    isBusy: function() {
+    isBusy() {
       return this.employees.length === 0 ? true : false;
     }
   }
