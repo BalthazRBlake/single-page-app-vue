@@ -26,8 +26,8 @@
         </div>
       </template>
       <template v-slot:cell(empActive)="data">
-        <b-td v-if="data.value" variant="info">YES</b-td>
-        <b-td v-else variant="danger">NO</b-td>
+        <b-badge v-if="data.value" variant="primary">YES</b-badge>
+        <b-badge v-else variant="danger">NO</b-badge>
       </template>
     </b-table>
     <div>
@@ -73,7 +73,8 @@ export default {
         },
         {
           key: "emp_dpId.dpName",
-          label: "Department"
+          label: "Department",
+          sortable: true
         },
         {
           key: "empActive",

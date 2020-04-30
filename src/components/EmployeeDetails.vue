@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-button v-b-modal="`modal + ${employee.empId}`" size="sm" variant="link"
-      >View
+    <b-button v-b-modal="`modal + ${employee.empId}`" size="sm" variant="link">
+      View
     </b-button>
 
     <b-modal
@@ -13,6 +13,7 @@
       footer-text-variant="light"
       button-size="sm"
       title="Employee Details"
+      no-stacking
     >
       <b-card>
         <b-card-text>
@@ -37,10 +38,27 @@
         <b-button size="sm" variant="outline-light" @click="cancel()">
           Cancel
         </b-button>
-        <b-button size="sm" variant="outline-success" @click="ok()">
+        <b-button
+          v-b-modal="`2nd-modal + ${employee.empId}`"
+          size="sm"
+          variant="outline-primary"
+        >
           Edit
         </b-button>
       </template>
+    </b-modal>
+
+    <b-modal
+      :id="`2nd-modal + ${employee.empId}`"
+      centered
+      header-bg-variant="dark"
+      header-text-variant="light"
+      footer-bg-variant="dark"
+      footer-text-variant="light"
+      button-size="sm"
+      title="Edit Employee"
+    >
+      <p class="my-2">Second Modal</p>
     </b-modal>
   </div>
 </template>
