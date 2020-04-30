@@ -1,7 +1,6 @@
 <template>
   <div class="overflow-auto">
     <b-pagination-nav
-      v-model.number="currentPage"
       :link-gen="linkGen"
       :number-of-pages="pages"
       use-router
@@ -32,13 +31,18 @@ import EmployeeService from "@/service/EmployeeService.js";
 import TableEmployees from "@/components/TableEmployees.vue";
 
 export default {
+  props: {
+    currentPage: {
+      type: [Number, String],
+      required: true
+    }
+  },
   components: {
     TableEmployees
   },
   data() {
     return {
       perPage: 10,
-      currentPage: 1,
       pages: 5,
       employees: []
     };
@@ -58,23 +62,18 @@ export default {
       this.updateTable();
       return {
         name: "Home",
-        params: {
-          currentPage: pageNum,
-          perPage: this.perPage
-        }
+        params: { currentPage: pageNum }
       };
     },
     updateTable() {
-      if (typeof this.currentPage === "number") {
-        EmployeeService.getPaginatedEmployees(this.currentPage, this.perPage)
-          .then(response => {
-            this.employees = response.data;
-          })
-          .catch(error => {
-            this.employees = [];
-            console.log(error.response);
-          });
-      }
+      EmployeeService.getPaginatedEmployees(this.currentPage, this.perPage)
+        .then(response => {
+          this.employees = response.data;
+        })
+        .catch(error => {
+          this.employees = [];
+          console.log(error.response);
+        });
     }
   },
   computed: {

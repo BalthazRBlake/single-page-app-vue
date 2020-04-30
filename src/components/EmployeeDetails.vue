@@ -58,13 +58,24 @@
       button-size="sm"
       title="Edit Employee"
     >
-      <p class="my-2">Second Modal</p>
+      <EmployeeEditForm :employee="employee"></EmployeeEditForm>
+
+      <template v-slot:modal-footer="{ cancel }">
+        <b-button @click="cancel()" variant="danger">
+          Cancel
+        </b-button>
+      </template>
     </b-modal>
   </div>
 </template>
 
 <script>
+import EmployeeEditForm from "@/components/EmployeeEditForm.vue";
+
 export default {
+  components: {
+    EmployeeEditForm
+  },
   props: {
     employee: {
       type: Object,
