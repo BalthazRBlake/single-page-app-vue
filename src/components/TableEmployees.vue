@@ -21,9 +21,9 @@
         </div>
       </template>
       <template v-slot:cell(details)="data">
-        <b-button @click="employeeDetails(data)" size="sm" variant="link">
-          View
-        </b-button>
+        <div>
+          <EmployeeDetails :employee="data.item"></EmployeeDetails>
+        </div>
       </template>
       <template v-slot:cell(empActive)="data">
         <b-td v-if="data.value" variant="info">YES</b-td>
@@ -40,7 +40,12 @@
 </template>
 
 <script>
+import EmployeeDetails from "@/components/EmployeeDetails.vue";
+
 export default {
+  components: {
+    EmployeeDetails
+  },
   props: {
     employees: Array,
     isBusy: Boolean
@@ -76,12 +81,6 @@ export default {
         }
       ]
     };
-  },
-  methods: {
-    employeeDetails(data) {
-      //console.log("Table emits   :::   ");console.log(data);
-      this.$emit("emit-selected-employee", data.item);
-    }
   }
 };
 </script>

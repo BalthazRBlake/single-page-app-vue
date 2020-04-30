@@ -23,11 +23,7 @@
       </select>
     </div>
 
-    <TableEmployees
-      @emit-selected-employee="emitEmployee"
-      :employees="employees"
-      :isBusy="isBusy"
-    ></TableEmployees>
+    <TableEmployees :employees="employees" :isBusy="isBusy"></TableEmployees>
   </div>
 </template>
 
@@ -79,10 +75,6 @@ export default {
             console.log(error.response);
           });
       }
-    },
-    emitEmployee(data) {
-      //console.log("PageNavBar emits   :::   ");console.log(data);
-      this.$emit("emit-selected-employee", data);
     }
   },
   computed: {
