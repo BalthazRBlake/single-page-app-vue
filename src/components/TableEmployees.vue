@@ -20,8 +20,10 @@
           <strong>Loading...</strong>
         </div>
       </template>
-      <template v-slot:cell(details)>
-        <b-button size="sm" variant="link">View</b-button>
+      <template v-slot:cell(details)="data">
+        <b-button @click="employeeDetails(data)" size="sm" variant="link">
+          View
+        </b-button>
       </template>
       <template v-slot:cell(empActive)="data">
         <b-td v-if="data.value" variant="info">YES</b-td>
@@ -74,6 +76,12 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    employeeDetails(data) {
+      //console.log("Table emits   :::   ");console.log(data);
+      this.$emit("emit-selected-employee", data.item);
+    }
   }
 };
 </script>
