@@ -2,9 +2,9 @@
   <div id="app">
     <NavBar />
     <br /><br /><br /><br />
-    <div class="container-fluid">
+    <b-container fluid>
       <router-view />
-    </div>
+    </b-container>
   </div>
 </template>
 

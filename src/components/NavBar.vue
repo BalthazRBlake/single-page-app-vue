@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="dark" fixed="top">
-      <b-navbar-brand to="/">
+      <b-navbar-brand :to="{ name: 'Home', params: { currentPage: 1 } }">
         <b-icon-code-slash class="d-inline-block align-top" font-scale="1.5">
         </b-icon-code-slash>
         Single Page Application Employees
@@ -14,7 +14,6 @@
           <b-nav-item :to="{ name: 'About' }">About</b-nav-item>
         </b-navbar-nav>
 
-        <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
             <b-form-input
