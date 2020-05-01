@@ -11,7 +11,14 @@
           v-model="orgEmp.empName"
           required
           placeholder="Enter name"
+          :state="nameValidation"
         ></b-form-input>
+        <b-form-invalid-feedback :state="nameValidation">
+          Employee name should be 3-15 characters long.
+        </b-form-invalid-feedback>
+        <b-form-valid-feedback :state="nameValidation">
+          Looks Good.
+        </b-form-valid-feedback>
       </b-form-group>
 
       <b-form-group>
@@ -27,7 +34,7 @@
       </b-form-group>
 
       <b-form-group>
-        <b-form-select v-model="orgEmp.emp_dpId">
+        <b-form-select v-model="orgEmp.emp_dpId" :state="departmentValidation">
           <template v-slot:first>
             <b-form-select-option :value="null" disabled>
               -- Please select a department --
@@ -44,7 +51,9 @@
         </b-form-select>
       </b-form-group>
 
-      <b-button type="submit" variant="outline-primary">Update</b-button>
+      <b-button type="submit" variant="outline-primary" :disabled="isReady">
+        Update
+      </b-button>
     </b-form>
   </div>
 </template>
@@ -81,6 +90,17 @@ export default {
       .catch(error => {
         console.log(error.response);
       });
+  },
+  computed: {
+    nameValidation() {
+      return this.orgEmp.empName.length > 2 && this.orgEmp.empName.length < 16;
+    },
+    departmentValidation() {
+      return this.orgEmp.emp_dpId === null ? false : true;
+    },
+    isReady() {
+      return !(this.nameValidation && this.departmentValidation);
+    }
   },
   methods: {
     onSubmit(evt) {

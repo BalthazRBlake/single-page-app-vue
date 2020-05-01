@@ -50,7 +50,10 @@ export default {
     EmployeeDetails
   },
   props: {
-    employees: Array,
+    employees: {
+      Type: Array,
+      required: true
+    },
     isBusy: Boolean
   },
   data() {
