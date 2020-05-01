@@ -22,7 +22,10 @@
       </template>
       <template v-slot:cell(details)="data">
         <div>
-          <EmployeeDetails :employee="data.item"></EmployeeDetails>
+          <EmployeeDetails
+            :employee="data.item"
+            @refresh-table="emitRefresh"
+          ></EmployeeDetails>
         </div>
       </template>
       <template v-slot:cell(empActive)="data">
@@ -56,6 +59,7 @@ export default {
       sortDesc: false,
       small: true,
       headVariant: "light",
+      boxTwo: "",
       fields: [
         {
           key: "details",
@@ -82,6 +86,35 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    emitRefresh(updatedEmployee) {
+      this.boxTwo = "";
+      this.$bvModal
+        .msgBoxOk(
+          `Employee with id: ${updatedEmployee.empId} was updated successfully`,
+          {
+            title: "Confirmation",
+            size: "sm",
+            buttonSize: "sm",
+            okVariant: "outline-success",
+            headerClass: "p-2 border-bottom-0",
+            headerBgVariant: "dark",
+            headerTextVariant: "light",
+            footerClass: "p-2 border-top-0",
+            footerBgVariant: "dark",
+            footerTextVariant: "light",
+            centered: true
+          }
+        )
+        .then(value => {
+          this.boxTwo = value;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      this.$emit("emit-refresh-tbl");
+    }
   }
 };
 </script>

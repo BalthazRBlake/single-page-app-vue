@@ -15,5 +15,16 @@ export default {
   },
   getTotalEmployees() {
     return apiEmployee.get("/pages");
+  },
+  updateEmployee(employee) {
+    return apiEmployee.put("/update/" + employee.empId, {
+      empId: employee.empId,
+      empName: employee.empName,
+      empActive: employee.empActive,
+      emp_dpId: {
+        dpId: employee.emp_dpId.dpId,
+        dpName: employee.emp_dpId.dpName
+      }
+    });
   }
 };

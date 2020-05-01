@@ -22,7 +22,11 @@
       </select>
     </div>
 
-    <TableEmployees :employees="employees" :isBusy="isBusy"></TableEmployees>
+    <TableEmployees
+      :employees="employees"
+      :isBusy="isBusy"
+      @emit-refresh-tbl="linkGen"
+    ></TableEmployees>
   </div>
 </template>
 

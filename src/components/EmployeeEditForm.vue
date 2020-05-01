@@ -44,12 +44,13 @@
         </b-form-select>
       </b-form-group>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="submit" variant="outline-primary">Update</b-button>
     </b-form>
   </div>
 </template>
 
 <script>
+import EmployeeService from "@/service/EmployeeService.js";
 import DepartmentService from "@/service/DepartmentService.js";
 
 export default {
@@ -84,8 +85,13 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.orgEmp));
-      console.log("Submitting...");
+      EmployeeService.updateEmployee(this.orgEmp)
+        .then(response => {
+          this.$emit("hide-modal", response.data);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
     }
   }
 };

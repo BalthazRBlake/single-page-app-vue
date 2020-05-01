@@ -1,11 +1,11 @@
 <template>
   <div>
-    <b-button v-b-modal="`modal + ${employee.empId}`" size="sm" variant="link">
+    <b-button v-b-modal="`modal-${employee.empId}`" size="sm" variant="link">
       View
     </b-button>
 
     <b-modal
-      :id="`modal + ${employee.empId}`"
+      :id="`modal-${employee.empId}`"
       centered
       header-bg-variant="dark"
       header-text-variant="light"
@@ -39,7 +39,7 @@
           Cancel
         </b-button>
         <b-button
-          v-b-modal="`2nd-modal + ${employee.empId}`"
+          v-b-modal="`2nd-modal-${employee.empId}`"
           size="sm"
           variant="outline-primary"
         >
@@ -49,7 +49,7 @@
     </b-modal>
 
     <b-modal
-      :id="`2nd-modal + ${employee.empId}`"
+      :id="`2nd-modal-${employee.empId}`"
       centered
       header-bg-variant="dark"
       header-text-variant="light"
@@ -58,10 +58,13 @@
       button-size="sm"
       title="Edit Employee"
     >
-      <EmployeeEditForm :employee="employee"></EmployeeEditForm>
+      <EmployeeEditForm
+        :employee="employee"
+        @hide-modal="hideModal"
+      ></EmployeeEditForm>
 
       <template v-slot:modal-footer="{ cancel }">
-        <b-button @click="cancel()" variant="danger">
+        <b-button @click="cancel()" variant="outline-light">
           Cancel
         </b-button>
       </template>
@@ -80,6 +83,12 @@ export default {
     employee: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    hideModal(updatedEmployee) {
+      this.$emit("refresh-table", updatedEmployee);
+      this.$bvModal.hide(`2nd-modal-${this.employee.empId}`);
     }
   }
 };
