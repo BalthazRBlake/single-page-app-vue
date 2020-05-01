@@ -1,14 +1,11 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-md">
+  <b-container>
+    <b-row>
+      <b-col md>
         <PagesNavBar :currentPage="currentPage"></PagesNavBar>
-      </div>
-      <!--div class="col-md">
-      <h1>Home</h1>
-      </div-->
-    </div>
-  </div>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
