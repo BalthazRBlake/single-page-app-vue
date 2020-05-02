@@ -15,24 +15,24 @@
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
-          <b-nav-form>
+          <b-nav-form @submit="onSubmit">
             <b-form-input
               v-model="nameToSearch"
               size="sm"
               class="mr-sm-2"
-              placeholder="Search"
+              placeholder="Name begins with ..."
             ></b-form-input>
             <b-button
-              :to="{
-                name: 'SearchByName',
-                params: { nameToSearch: nameToSearch }
-              }"
+              type="submit"
               size="sm"
               class="my-2 my-sm-0"
-              variant="outline-info"
+              variant="outline-light"
               :disabled="hasValue"
             >
-              Search
+              <b-icon-search
+                variant="info"
+                :animation="isEnable"
+              ></b-icon-search>
             </b-button>
           </b-nav-form>
         </b-navbar-nav>
@@ -51,6 +51,19 @@ export default {
   computed: {
     hasValue() {
       return this.nameToSearch.length === 0 ? true : false;
+    },
+    isEnable() {
+      return this.hasValue ? "" : "throb";
+    }
+  },
+  methods: {
+    onSubmit(evt) {
+      evt.preventDefault();
+      this.$router.push({
+        name: "SearchByName",
+        params: { nameToSearch: this.nameToSearch }
+      });
+      this.nameToSearch = "";
     }
   }
 };
