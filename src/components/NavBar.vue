@@ -26,11 +26,11 @@
               type="submit"
               size="sm"
               class="my-2 my-sm-0"
-              variant="outline-light"
+              variant="outline-info"
               :disabled="hasValue"
             >
               <b-icon-search
-                variant="info"
+                variant="light"
                 :animation="isEnable"
               ></b-icon-search>
             </b-button>
