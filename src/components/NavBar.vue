@@ -17,20 +17,41 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
             <b-form-input
+              v-model="nameToSearch"
               size="sm"
               class="mr-sm-2"
               placeholder="Search"
             ></b-form-input>
             <b-button
+              :to="{
+                name: 'SearchByName',
+                params: { nameToSearch: nameToSearch }
+              }"
               size="sm"
               class="my-2 my-sm-0"
-              type="submit"
               variant="outline-info"
-              >Search</b-button
+              :disabled="hasValue"
             >
+              Search
+            </b-button>
           </b-nav-form>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      nameToSearch: ""
+    };
+  },
+  computed: {
+    hasValue() {
+      return this.nameToSearch.length === 0 ? true : false;
+    }
+  }
+};
+</script>
