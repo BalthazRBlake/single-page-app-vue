@@ -26,5 +26,8 @@ export default {
         dpName: employee.emp_dpId.dpName
       }
     });
+  },
+  searchEmployeesByName(nameToSearch) {
+    return apiEmployee.get("/search/" + nameToSearch);
   }
 };

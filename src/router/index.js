@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
+import SearchByName from "../views/SearchByName.vue";
 
 Vue.use(VueRouter);
 
@@ -14,12 +15,18 @@ const routes = [
   },
   {
     path: "/",
-    redirect: "/1"
+    redirect: "/employees/1"
   },
   {
     path: "/about",
     name: "About",
     component: About
+  },
+  {
+    path: "/searchByName/:nameToSearch",
+    name: "SearchByName",
+    component: SearchByName,
+    props: true
   }
 ];
 
