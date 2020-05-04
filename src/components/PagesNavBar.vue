@@ -52,7 +52,7 @@ export default {
     };
   },
   beforeUpdate() {
-    EmployeeService.getTotalEmployees()
+    EmployeeService.getCountTotalEmployees()
       .then(response => {
         this.pages = Math.ceil(response.data / this.perPage);
       })
