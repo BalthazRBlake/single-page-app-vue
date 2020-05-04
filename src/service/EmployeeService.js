@@ -10,11 +10,11 @@ const apiEmployee = axios.create({
 });
 
 export default {
-  getPaginatedEmployees(page, size) {
-    return apiEmployee.get("/paginated/" + page + "/" + size);
+  getPaginatedEmployees(currentPage, perPage) {
+    return apiEmployee.get("/paginated/" + currentPage + "/" + perPage);
   },
-  getTotalEmployees() {
-    return apiEmployee.get("/pages");
+  getCountTotalEmployees() {
+    return apiEmployee.get("/totalEmployees");
   },
   updateEmployee(employee) {
     return apiEmployee.put("/update/" + employee.empId, {
